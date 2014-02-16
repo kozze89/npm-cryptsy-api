@@ -58,7 +58,7 @@ CryptsyClient.prototype.apiQuery = function(method, callback, args) {
 
   request(options, function(err, res, body) {
     var error = function(msg) {
-      return callback('There was an error in the reqeust: '+ msg);
+      return callback(null, 'There was an error in the reqeust: '+ msg);
     };
 
     // Look for HTTP errors
