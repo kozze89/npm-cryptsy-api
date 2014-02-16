@@ -79,7 +79,7 @@ CryptsyClient.prototype.apiQuery = function(method, callback, args) {
 /**
  * This function gets the market id for a market in the format 'LTCBTC'
  */
-CryptsyClient.prototype.getMarketId = function(marketname, callback) {
+CryptsyClient.prototype.getmarketid = function(marketname, callback) {
   if(!this.markets || !this.markets.length) {
     this.getmarkets(function() {
       return callback(this.markets[marketname]);
