@@ -72,6 +72,8 @@ CryptsyClient.prototype.apiQuery = function(method, callback, args) {
       callback(body.return);
     } else if (body.error) {
       return error(body.error);
+    } else {
+      return error('Unknown error,probably due to a bad response from cryptsy');
     }
   });
 };
