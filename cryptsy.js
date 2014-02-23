@@ -126,6 +126,8 @@ CryptsyClient.prototype.getinfo = function(callback) {
 };
 
 CryptsyClient.prototype.getmarkets = function(callback) {
+  var self = this;
+
   var callback2 = function(markets) {
     this.markets = {};
     for(var i in markets) {
@@ -135,7 +137,13 @@ CryptsyClient.prototype.getmarkets = function(callback) {
     callback(markets);
   };
 
-  this.apiQuery('getmarkets', callback2);
+  this.apiQuery('getmarkets', function(data, err) {
+    if (err) {
+      console.log('Problems while fetching the markets, refetching...');
+      return self.getmarkets(callback);
+    }
+    return callback2(data);
+  });
 };
 
 CryptsyClient.prototype.mytransactions = function(callback) {
